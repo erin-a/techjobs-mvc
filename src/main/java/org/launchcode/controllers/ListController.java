@@ -11,10 +11,20 @@ import java.util.HashMap;
 
 /**
  * Created by LaunchCode
+ *
+ * This controller provides functionality for users to see lists of all values
+ * of a given data column: employer, location, skill, and position type.
  */
 @Controller
 @RequestMapping(value = "list")
 public class ListController {
+
+    /**
+     * [This] is a constructor that we use to populate columnChoices with values.
+     * The columnChoices HashMap plays the same role as it did in the console app,
+     * which is to provide a centralized collection of the different list and
+     * search options presented throughout the user interface.
+     */
 
     static HashMap<String, String> columnChoices = new HashMap<>();
 
@@ -26,6 +36,11 @@ public class ListController {
         columnChoices.put("all", "All");
     }
 
+
+    /**
+     * [the 'list' handler method]  displays the different types of lists that the
+     * user can view. The latter two display actual data obtained from JobData.
+     */
     @RequestMapping(value = "")
     public String list(Model model) {
 
@@ -33,6 +48,18 @@ public class ListController {
 
         return "list";
     }
+
+    /**
+     * [the 'listColumnValues' handler method] the controller uses the query
+     * parameter passed in as column to determine which values to fetch
+     * from JobData.
+     *
+     *
+     * In the case of "all" it will fetch all job data, and then render the
+     * list-jobs.html view template. In all other cases, it fetches only the
+     * values for the given column and passes them to the list-column.html
+     * view template
+     */
 
     @RequestMapping(value = "values")
     public String listColumnValues(Model model, @RequestParam String column) {
@@ -51,6 +78,18 @@ public class ListController {
         }
 
     }
+
+    /**
+     *[the 'listJobsByColumnAndValue' handler method] we take in two query
+     *  parameters: column and value. This has the net result of working
+     *  similarly to the search functionality, in that we are "searching"
+     *  for a particular value within a particular column and then displaying
+     *  jobs that match. However, this is slightly different from the other
+     *  way of searching in that the user will arrive at this handler method
+     *  as a result of clicking on a link within one of our views, rather than
+     *  via submitting a form. We'll see where these links originate when we
+     *  look at the views.
+     */
 
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model,

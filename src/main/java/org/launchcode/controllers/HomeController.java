@@ -8,6 +8,9 @@ import java.util.HashMap;
 
 /**
  * Created by LaunchCode
+ *
+ * This class has only one handler method, index, which displays the home page
+ * for the app. As you can see, this controller renders the index.html template
  */
 @Controller
 public class HomeController {
@@ -25,3 +28,6 @@ public class HomeController {
     }
 
 }
+
+
+

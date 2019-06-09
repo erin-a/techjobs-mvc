@@ -18,3 +18,20 @@
 
 </body>
 </html>
+
+<!--This template displays the list options, using data from the columnChoices
+ HashMap passed in via the model as columns
+
+
+(column=${column.key}) This syntax will cause Thymeleaf to generate query
+parameters for our URL based on the key/value pairs specified.
+
+In list.html, we specify a query parameter named column by using column=.
+The value of the query parameter is determined dynamically based on the value
+of ${column.key}. Since these values come from columnChoices in the controller,
+they will be employer, location, etc. When the user clicks on these links, they
+will be routed to the listColumnValues handler in ListController, which looks for
+this parameter.
+ -->
+
+<!-- -->
