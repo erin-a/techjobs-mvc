@@ -36,19 +36,37 @@
 
     <hr />
 
+</div>
+
     <!-- TODO #2 - Loop over jobs map to display all job fields
     objective: display data
 
     - create a loop to display each job passed in from the controller
-
     - You should put each job in its own table, with one job field per row.
-
     - Add the CSS class "job-listing" to each of the tables
+-->
 
-    -->
+<!--
+    <div>
 
+    <table class="job-listing" th:each="results : ${jobs}">
+        <tr th:each="jobs : ${job}">
+            <td th:text="${jobs.key}"></td>
+            <td th:text="${jobs.value}"></td>
+        </tr>
+    </table>
 
+    </div>
+
+    this did not cooperate
+-->
+
+<div th:if="${jobs}">
+    <!-- pull from fragments -->
+    <div th:replace="fragments :: results"></div>
 </div>
+
+
 
 </body>
 </html>

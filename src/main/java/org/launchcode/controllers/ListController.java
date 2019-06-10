@@ -34,6 +34,7 @@ public class ListController {
         columnChoices.put("location", "Location");
         columnChoices.put("position type", "Position Type");
         columnChoices.put("all", "All");
+        columnChoices.put("name", "Title");
     }
 
 

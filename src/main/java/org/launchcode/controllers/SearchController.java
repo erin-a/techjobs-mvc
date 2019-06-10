@@ -21,27 +21,7 @@ public class SearchController {
         return "search";
     }
 
-    @RequestMapping(value = "results")  // would it be: value = "results/{searchType}/{searchName}"  ??
-    public String search(@RequestParam String searchType, @RequestParam String searchTerm, Model model) {
-        ArrayList<HashMap<String, String>> searchresults;
-        //if searching for all do search A
-        if (searchType.equals("all")) {
-            searchresults = JobData.findByValue(searchTerm);
-        }
-        // else do search B
-        else {
-            searchresults = JobData.findByColumnAndValue(searchType, searchTerm);
 
-        }
-
-
-
-        model.addAttribute("columns", ListController.columnChoices);
-        //model.addAttribute("", ListController.???)
-        model.addAttribute("searchresults", searchresults);
-
-        return "search";
-    }
 
 
     // TODO #1 - Create handler to process search request and display results
@@ -57,4 +37,27 @@ public class SearchController {
 
     //need to pass ListController.columnChoices to the view, as the existing search handler does.
 
+    @RequestMapping(value = "results")  // would it be: value = "results/{searchType}/{searchName}"  ??
+    public String search(Model model, @RequestParam String searchType, @RequestParam String searchTerm) {
+        ArrayList<HashMap<String, String>> jobs;
+
+        //answering my own question - in list controller this is established as an array list of hashmaps - that's how I should have know from reading the code why just hashmap didn't work
+        // updated variable name searchresults to jobs to match the variable names in ListController
+
+        //if searching for all do search A
+        if (searchType.equals("all")) {
+            jobs = JobData.findByValue(searchTerm);
+        }
+        // else do search B
+        else {
+            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+            model.addAttribute("thing", searchType);
+        }
+
+        model.addAttribute("columns", ListController.columnChoices);
+        //model.addAttribute("", ListController.???)
+        model.addAttribute("jobs", jobs);
+
+        return "search";
+    }
 }

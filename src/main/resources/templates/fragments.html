@@ -28,4 +28,21 @@
     </div>
 
 </body>
+
+
+<body>
+<div th:fragment="results">
+   <h3 th:text="${jobs.size()} + ' Result(s)'"  class="container body-content"></h3>
+    <table class="job-listing" th:each="results : ${jobs}">
+        <tr th:each="key : ${results.keySet()}">
+            <td th:text="${columns.get(key)}"></td>
+            <td th:text="${results.get(key)}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+
+
+
+
 </html>
