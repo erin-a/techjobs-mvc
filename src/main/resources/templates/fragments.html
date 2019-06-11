@@ -33,10 +33,19 @@
 <body>
 <div th:fragment="results">
    <h3 th:text="${jobs.size()} + ' Result(s)'"  class="container body-content"></h3>
-    <table class="job-listing" th:each="results : ${jobs}">
-        <tr th:each="key : ${results.keySet()}">
+    <table class="job-listing" th:each="result : ${jobs}">
+        <tr th:each="key : ${result.keySet()}">
+
             <td th:text="${columns.get(key)}"></td>
-            <td th:text="${results.get(key)}"></td>
+
+            <!-- <td th:href="@{/list/values(column=${columns.key})}"
+               th:text="${columns.value}"></td> //nothing works with nothing -->
+            <!-- <td th:href="@{/list/values(column=${columns.key})}"></td> nope-->
+            <!-- <td th:text="${columns.value}"></td> still no -->
+            <!-- <td th:text="(column=${column.key})"></td> -->
+            <!-- <td th:text="${column.key})"></td> -->
+
+            <td th:text="${result.get(key)}"></td>
         </tr>
     </table>
 </div>
